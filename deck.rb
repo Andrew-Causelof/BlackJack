@@ -30,6 +30,7 @@ class Deck
         @card_deck << Card.new("#{card + suit}", 11)
       end
     end
+    @card_deck.shuffle!
   end
 
   def draw
@@ -39,8 +40,3 @@ class Deck
     return card
   end
 end
-
-#test = Deck.new
-#test.card_deck.each do |card|
-#  puts card.value
-#end
