@@ -8,7 +8,17 @@ class Player
   end
 
   def get_card(card)
-    @score += card.value
+    #according the task we should check current player' score
+    # before adding scores for aces, it may be 1 or 11
+    if card.value == 11
+       if @score > 10
+         @score += 1
+       else
+         @score += 11
+       end
+    else
+      @score += card.value
+    end
     @cards << card
   end
 
