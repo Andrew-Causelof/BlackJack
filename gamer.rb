@@ -5,7 +5,6 @@ class Gamer < Player
   end
 
   def print_score
-    puts 'Your scores:'
-    puts "#{@score}"
+    return "Your scores: #{@score}"
   end
 end

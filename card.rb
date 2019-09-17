@@ -6,14 +6,5 @@ class Card
     @name = name
     @value = value
   end
-  # Created this mathod to test, how correctly cards are showing up
-  # I suppose it will be unusefull, because player should show up his own
-  # so it could be removed
-  def print
-    puts " " + "----"
-    puts "|" + "    " + "|"
-    puts "|" + "#{@name}" + "|"
-    puts "|" + "    " + "|"
-    puts " " + "----"
-  end
+
 end

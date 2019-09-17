@@ -22,22 +22,6 @@ class Player
     @cards << card
   end
 
-  def print_cards
-    cards = @cards.size
-    cards.times { print " " + "----" + " " }
-    puts
-    cards.times { print "|" + "    " + "|" }
-    puts
-    @cards.each do |card_name|
-      print "|" + "#{card_name.name}" + "|"
-    end
-    puts
-    cards.times { print "|" + "    " + "|" }
-    puts
-    cards.times { print " " + "----" }
-    puts
-  end
-
   def make_a_bet
     @money -= 10
   end

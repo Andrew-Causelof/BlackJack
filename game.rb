@@ -5,7 +5,7 @@ require_relative 'player'
 require_relative 'dealer'
 require_relative 'gamer'
 class Game
-  attr_reader :gamer
+  attr_reader :gamer, :dealer
 
   def initialize
     #Create new deck and mix all cards
@@ -24,88 +24,39 @@ class Game
     @dealer.clear
   end
 
-  def give_first_cards(player)
-    2.times { give_a_card(player) }
+  def give_first_cards
+    2.times { give_a_card(@gamer) }
+    2.times { give_a_card(@dealer) }
   end
 
   def give_a_card(player)
     player.get_card(@deck.draw)
   end
 
-  def question
-    puts "1. pass  2. one more card  3. open cards"
-    gets.chomp.to_i
-  end
-
   def dealer_desicion
     give_a_card(@dealer) if @dealer.decide && @dealer.cards.size < 3
   end
 
-  def open_cards
-    system("clear")
-    puts " Dealer's card :"
-    @dealer.print_cards
-    @dealer.print_score
-    puts "Your cards :"
-    @gamer.print_cards
-    @gamer.print_score
-    final_calculation
-  end
-
   def final_calculation
-    if @dealer.score > 21 && @gamer.score > 21
-      puts ' You and Dealer lose 10 bucks'
-    elsif @dealer.score < @gamer.score || @dealer.score > 21
-      puts ' You win 10 bucks'
+    ds = @dealer.score
+    gs = @gamer.score
+    if ds > 21 && gs > 21
+      return ' You and Dealer lose 10 bucks'
+    elsif ds < gs && gs < 22 || ds > 21
       @gamer.win_a_bet
-    elsif @gamer.score < @dealer.score || @gamer.score > 21
-      puts ' You lose 10 bucks'
+      return ' You win 10 bucks'
+    elsif gs < ds && ds < 22 || gs > 21
       @dealer.win_a_bet
+      return ' You lose 10 bucks'
     else
-      puts 'Dead heat'
       @dealer.dead_heat
       @gamer.dead_heat
+      return 'Dead heat'
     end
   end
 
-  def make_desicion(answer)
-    case answer
-      # pass
-      when 1
-      dealer_desicion
-      answer = question
-      make_desicion(answer)
-      # ask 3d card
-      when 2
-        give_a_card(@gamer) if @gamer.cards.size < 3
-        dealer_desicion
-        open_cards
-        # ask to open cards
-      when 3
-        open_cards
-      else
-        puts 'Answer is incorrect, so we suppose you said - pass'
-        dealer_desicion
-    end
+  def give_3d_card
+    give_a_card(@gamer) if @gamer.cards.size < 3
   end
 
-  def play
-    #We should clear hands and score since 2d round
-    clear_hands
-    #Give first 2 cards to gamer and 2 for dealer
-    give_first_cards(@gamer)
-    give_first_cards(@dealer)
-
-    system("clear")
-    puts " Dealer's card :"
-    @dealer.print_hidden_cards
-
-    puts "Your cards :"
-    @gamer.print_cards
-    @gamer.print_score
-
-    answer = question
-    make_desicion(answer)
-    gets
-  end
 end
