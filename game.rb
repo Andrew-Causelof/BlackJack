@@ -41,17 +41,17 @@ class Game
     ds = @dealer.score
     gs = @gamer.score
     if ds > 21 && gs > 21
-      return ' You and Dealer lose 10 bucks'
+      ' You and Dealer lose 10 bucks'
     elsif ds < gs && gs < 22 || ds > 21
       @gamer.win_a_bet
-      return ' You win 10 bucks'
+      ' You win 10 bucks'
     elsif gs < ds && ds < 22 || gs > 21
       @dealer.win_a_bet
-      return ' You lose 10 bucks'
+      ' You lose 10 bucks'
     else
       @dealer.dead_heat
       @gamer.dead_heat
-      return 'Dead heat'
+      'Dead heat'
     end
   end
 

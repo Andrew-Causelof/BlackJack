@@ -1,9 +1,11 @@
 require_relative 'game'
-
- puts " Please write down your name:"
- _name = gets.chomp
-
+#-------Initialize new Game
 @game = Game.new
+#------Describe game-logic methods for console interface
+def greeting
+  puts " Please write down your name:"
+  _name = gets.chomp
+end
 
 def question
   puts "1. pass  2. one more card  3. open cards"
@@ -97,10 +99,12 @@ def play
   gets
 end
 
+#-----Program starts here-----
+greeting
 loop do
   system ('clear')
   puts "Your balance is #{@game.gamer.money}USD"
-  if @game.gamer.money > 0
+  if @game.gamer.can_continue?
     gets
     play
     puts 'Will you play again y/n'

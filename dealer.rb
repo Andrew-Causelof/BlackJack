@@ -6,7 +6,7 @@ class Dealer < Player
   end
 
   def print_score
-    return " Dealer's score : #{@score}"
+    " Dealer's score : #{@score}"
   end
 
   def decide

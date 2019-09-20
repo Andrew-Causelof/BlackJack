@@ -9,7 +9,7 @@ class Deck
 
   FACE_NUMBERS  =  [" 2", " 3", " 4", " 5", " 6", " 7", " 8", " 9","10"]
   FACE_PICTURES = [" J", " Q", " K"]
-  FACE_ACES     = [" A"]
+  FACE_ACES     = ["A"]
 
   def initialize
     @card_deck = []
@@ -21,13 +21,13 @@ class Deck
     suits = [HEARTS, TILES, CLOVERS, PIKES]
     suits.each do |suit|
       FACE_NUMBERS.each do |card|
-        @card_deck << Card.new("#{card + suit}", card.to_i)
+        @card_deck << Card.new(card, suit)
       end
       FACE_PICTURES.each do |card|
-        @card_deck << Card.new("#{card + suit}", 10)
+        @card_deck << Card.new(card, suit)
       end
       FACE_ACES.each do |card|
-        @card_deck << Card.new("#{card + suit}", 11)
+        @card_deck << Card.new(card, suit)
       end
     end
     @card_deck.shuffle!
@@ -37,6 +37,6 @@ class Deck
     card = @card_deck.first
     @drawn_card << card
     @card_deck.shift
-    return card
+    card
   end
 end

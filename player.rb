@@ -1,3 +1,4 @@
+require_relative 'deck'
 class Player
   attr_reader :score, :money, :cards
 
@@ -7,18 +8,23 @@ class Player
     @cards = []
   end
 
-  def get_card(card)
+  def card_score_calculation(card)
+    score = card.card_value.to_i if Deck::FACE_NUMBERS.include?(card.card_value)
+    score = 10 if Deck::FACE_PICTURES.include?(card.card_value)
     #according the task we should check current player' score
     # before adding scores for aces, it may be 1 or 11
-    if card.value == 11
-       if @score > 10
-         @score += 1
-       else
-         @score += 11
-       end
-    else
-      @score += card.value
+    if Deck::FACE_ACES.include?(card.card_value)
+      if @score > 10
+        score = 1
+      else
+        score = 11
+      end
     end
+  score
+  end
+
+  def get_card(card)
+    @score += card_score_calculation(card)
     @cards << card
   end
 
