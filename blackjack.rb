@@ -29,7 +29,7 @@ def print_cards(player)
   puts
   cards.times { print "|" + "    " + "|" }
   puts
-  cards.times { print " " + "----" }
+  cards.times { print " " + "----" + " " }
   puts
 end
 

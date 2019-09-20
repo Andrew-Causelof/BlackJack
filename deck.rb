@@ -9,7 +9,7 @@ class Deck
 
   FACE_NUMBERS  =  [" 2", " 3", " 4", " 5", " 6", " 7", " 8", " 9","10"]
   FACE_PICTURES = [" J", " Q", " K"]
-  FACE_ACES     = ["A"]
+  FACE_ACES     = [" A"]
 
   def initialize
     @card_deck = []

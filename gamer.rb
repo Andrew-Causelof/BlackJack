@@ -5,6 +5,11 @@ class Gamer < Player
   end
 
   def print_score
-    return "Your scores: #{@score}"
+    "Your scores: #{@score}"
   end
+
+  def can_continue?
+  @money > 0
+  end
+
 end
