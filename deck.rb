@@ -7,10 +7,6 @@ class Deck
   CLOVERS = "+ "
   PIKES =   "^ "
 
-  FACE_NUMBERS  =  [" 2", " 3", " 4", " 5", " 6", " 7", " 8", " 9","10"]
-  FACE_PICTURES = [" J", " Q", " K"]
-  FACE_ACES     = [" A"]
-
   def initialize
     @card_deck = []
     @drawn_card = []
@@ -20,13 +16,13 @@ class Deck
   def new_deck
     suits = [HEARTS, TILES, CLOVERS, PIKES]
     suits.each do |suit|
-      FACE_NUMBERS.each do |card|
+      Card::FACE_NUMBERS.each do |card|
         @card_deck << Card.new(card, suit)
       end
-      FACE_PICTURES.each do |card|
+      Card::FACE_PICTURES.each do |card|
         @card_deck << Card.new(card, suit)
       end
-      FACE_ACES.each do |card|
+      Card::FACE_ACES.each do |card|
         @card_deck << Card.new(card, suit)
       end
     end
